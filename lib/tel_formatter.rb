@@ -7,8 +7,8 @@ module TelFormatter
   SPECIAL_CODES_11 = File.read(File.expand_path("../../data/special_codes_11.txt", __FILE__)).split("\n").reverse
   CELLPHONE_CODES = File.read(File.expand_path("../../data/cellphone_codes.txt", __FILE__)).split("\n").reverse
   AREA_CODE_REGEXP = /\A(#{AREA_CODES.join("|")})(\d{1,4})(\d{4})\Z/
-  SPECIAL_CODE_10_REGEXP = /\A(#{SPECIAL_CODES_10.join("|")})(\d{6})\Z/
-  SPECIAL_CODE_11_REGEXP = /\A(#{SPECIAL_CODES_11.join("|")})(\d{7})\Z/
+  SPECIAL_CODE_10_REGEXP = /\A(#{SPECIAL_CODES_10.join("|")})(\d{3})(\d{3})\Z/
+  SPECIAL_CODE_11_REGEXP = /\A(#{SPECIAL_CODES_11.join("|")})(\d{3})(\d{4})\Z/
   CELLPHONE_CODE_10_REGEXP = /\A(#{CELLPHONE_CODES.join("|")})(\d{3})(\d{4})\Z/
   CELLPHONE_CODE_REGEXP = /\A(#{CELLPHONE_CODES.join("|")})([1-9]\d{3})(\d{4})\Z/
 
@@ -23,7 +23,7 @@ module TelFormatter
       if AREA_CODE_REGEXP =~ tel
         return [$1, $2, $3]
       elsif SPECIAL_CODE_10_REGEXP =~ tel
-        return [$1, $2]
+        return [$1, $2, $3]
       elsif CELLPHONE_CODE_10_REGEXP =~ tel
         return [$1, $2, $3]
       else
@@ -33,7 +33,7 @@ module TelFormatter
       if CELLPHONE_CODE_REGEXP =~ tel
         return [$1, $2, $3]
       elsif SPECIAL_CODE_11_REGEXP =~ tel
-        return [$1, $2]
+        return [$1, $2, $3]
       else
         raise ArgumentError, "Invalid telephone number"
       end

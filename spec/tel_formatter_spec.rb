@@ -36,11 +36,11 @@ describe TelFormatter do
       tel = "0126700000"
       expect(TelFormatter.split(tel)).to eq(["01267", "0", "0000"])
       tel = "0120000000"
-      expect(TelFormatter.split(tel)).to eq(["0120", "000000"])
+      expect(TelFormatter.split(tel)).to eq(["0120", "000", "000"])
       tel = "08099999999"
       expect(TelFormatter.split(tel)).to eq(["080", "9999", "9999"])
       tel = "08000000000"
-      expect(TelFormatter.split(tel)).to eq(["0800", "0000000"])
+      expect(TelFormatter.split(tel)).to eq(["0800", "000", "0000"])
 
       tel = "0429991111"
       expect(TelFormatter.split(tel)).to eq(["042", "999", "1111"])
